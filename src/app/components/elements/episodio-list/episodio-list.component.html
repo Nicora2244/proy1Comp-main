@@ -1,0 +1,19 @@
+<ion-list *ngIf="episodios.length > 0; else loading">
+  <ion-item *ngFor="let episodio of episodios">
+    <ion-avatar slot="start">
+      <img [src]="episodio.thumbnail" alt="Episode Image" />
+    </ion-avatar>
+    <ion-label>
+      <h2>{{ episodio.name }}</h2>
+      <p><strong>Episodio:</strong> {{ episodio.episode }}</p>
+      <p><strong>Fecha de emisión:</strong> {{ episodio.air_date }}</p>
+    </ion-label>
+    <ion-button (click)="verEpisodio(episodio.id)">Ver Detalles</ion-button>
+  </ion-item>
+</ion-list>
+
+<ng-template #loading>
+  <ion-spinner name="crescent"></ion-spinner>
+  <p>Cargando episodios...</p>
+</ng-template>
+

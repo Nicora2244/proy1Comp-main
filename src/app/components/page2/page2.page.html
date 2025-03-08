@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ episodio?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Episode Details -->
+  <ion-card *ngIf="episodio">
+    <ion-card-header>
+      <ion-card-title>{{ episodio.name }}</ion-card-title>
+      <ion-card-subtitle>
+        <p><strong>Episodio:</strong> {{ episodio.episode }}</p>
+        <p><strong>Fecha de emisión:</strong> {{ episodio.air_date }}</p>
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>
+        <strong>Descripción:</strong> Este episodio, titulado <b>{{ episodio.name }}</b>, 
+        se emitió el <b>{{ episodio.air_date }}</b> y corresponde al episodio 
+        <b>{{ episodio.episode }}</b> de la serie. Aquí, los personajes 
+        enfrentan eventos inesperados y situaciones caóticas al estilo de 
+        <b>Rick and Morty</b>.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Characters List -->
+  <ion-list *ngIf="personajes.length > 0">
+    <ion-list-header>
+      <ion-label><strong>Personajes que aparecen en este episodio</strong></ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let personaje of personajes">
+      <ion-avatar slot="start">
+        <img [src]="personaje.image" alt="{{ personaje.name }}" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ personaje.name }}</h2>
+        <p><strong>Especie:</strong> {{ personaje.species }}</p>
+        <p><strong>Estado:</strong> {{ personaje.status }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Loading Spinner -->
+  <ng-template #loading>
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Cargando detalles del episodio...</p>
+  </ng-template>
+</ion-content>
+
